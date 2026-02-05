@@ -1,17 +1,16 @@
-function DriverCard() {
+function DriverCard({ name, team, position }) {
   return (
     <div style={{ 
-
-     border: '2px solid red', 
-      padding: '20px', 
-      width: '250px',
-      textAlign: 'center'
-
+      backgroundColor: '#fff', 
+      color: '#000', 
+      padding: '15px', 
+      borderRadius: '8px', 
+      borderLeft: '10px solid #ff1801' 
     }}>
-      <h2>Max Verstappen</h2>
-      <p>Team: Red Bull</p>
+      <small>POS: {position}</small>
+      <h3 style={{ margin: '5px 0' }}>{name}</h3>
+      <p style={{ margin: 0, fontSize: '0.9rem', color: '#444' }}>{team}</p>
     </div>
-  )
+  );
 }
-
-export default DriverCard
+export default DriverCard;
