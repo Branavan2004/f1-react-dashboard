@@ -1,4 +1,5 @@
 import React from 'react'
+console.log('main.jsx module loaded')
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -11,3 +12,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </ErrorBoundary>
   </React.StrictMode>,
 )
+// VSCode-save-test
+
+// VSCode-save-test

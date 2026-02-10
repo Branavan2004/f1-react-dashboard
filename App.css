@@ -1,0 +1,249 @@
+/* --- FanVolt Design System --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+:root {
+  --f1-red: #ff1801;
+  --bg-dark: #050505;
+  --sidebar-bg: #0d0d0f;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --border-color: #1a1a1a;
+  --text-main: #e0e0e0;
+  --text-dim: #666;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  overflow: hidden;
+}
+
+/* --- Layout Grid --- */
+.fanvolt-container {
+  display: grid;
+  grid-template-columns: 280px 1fr 360px;
+  height: 100vh;
+}
+
+/* --- Sidebar (Column 1) --- */
+.sidebar {
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+}
+
+.logo span {
+  color: var(--f1-red);
+  font-size: 0.8rem;
+  background: rgba(255, 24, 1, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 5px;
+}
+
+/* --- Main Stage (Column 2) --- */
+.main-stage {
+  padding: 40px;
+  background: radial-gradient(circle at center, #111115 0%, #050505 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.sim-controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.lap-info span {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+}
+
+.lap-info h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.lap-info h1 span {
+  font-size: 1.2rem;
+  color: var(--text-dim);
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.play-btn {
+  background: var(--f1-red);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-weight: 800;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.1s;
+}
+
+.play-btn:active { transform: scale(0.95); }
+
+.speed-select {
+  background: #222;
+  color: white;
+  border: 1px solid #333;
+  padding: 0 10px;
+  border-radius: 4px;
+}
+
+/* --- Track SVG Simulation --- */
+.track-container {
+  width: 100%;
+  max-width: 800px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.track-bg {
+  fill: none;
+  stroke: #1a1a1a;
+  stroke-width: 20;
+  stroke-linecap: round;
+}
+
+.track-neon {
+  fill: none;
+  stroke: var(--f1-red);
+  stroke-width: 2;
+  opacity: 0.5;
+}
+
+.driver-marker .dot {
+  fill: white;
+  filter: drop-shadow(0 0 5px white);
+}
+
+.driver-code {
+  fill: white;
+  font-size: 10px;
+  font-weight: 900;
+  text-shadow: 0 0 10px black;
+}
+
+/* --- Timeline Slider --- */
+.timeline {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.timeline input[type=range] {
+  width: 100%;
+  accent-color: var(--f1-red);
+  background: #222;
+  height: 6px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* --- Leaderboard (Column 3) --- */
+.right-panel {
+  background: var(--sidebar-bg);
+  border-left: 1px solid var(--border-color);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.leaderboard h3 {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: var(--card-bg);
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.leaderboard-row:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #333;
+  transform: translateX(5px);
+}
+
+.position {
+  font-weight: 900;
+  width: 25px;
+  color: var(--text-dim);
+}
+
+.driver-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #111;
+  margin: 0 12px;
+  border: 2px solid #222;
+  object-fit: cover;
+}
+
+.driver-info {
+  flex: 1;
+}
+
+.driver-info strong {
+  display: block;
+  font-size: 0.95rem;
+  letter-spacing: -0.5px;
+}
+
+.driver-info small {
+  color: var(--text-dim);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.time {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--f1-red);
+  font-weight: bold;
+}
+
+/* --- Scrollbar Styling --- */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--f1-red); }

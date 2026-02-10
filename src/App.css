@@ -1,0 +1,43 @@
+/* Update your App.css with these specific 'Premium' fixes */
+.fanvolt-container {
+  display: grid;
+  grid-template-columns: 300px 1fr 350px; /* Precise 3-column split */
+  height: 100vh;
+  background: #050505;
+}
+
+.sidebar {
+  background: #0d0d0f;
+  border-right: 1px solid #1a1a1a;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.main-stage {
+  padding: 40px;
+  background: radial-gradient(circle, #1a1a1e 0%, #050505 100%);
+  overflow-y: auto;
+}
+
+.right-panel {
+  background: #0d0d0f;
+  border-left: 1px solid #1a1a1a;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Make the Leaderboard rows look like Pro Telemetry */
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  margin-bottom: 8px;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+
+.leaderboard-row:hover {
+  transform: translateX(10px);
+  background: rgba(255, 255, 255, 0.07);
+}
