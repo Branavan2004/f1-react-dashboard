@@ -1,6 +1,12 @@
-function RaceCard({ round, name, country, date, isSelected }) {
+function RaceCard({ race, active, onClick }) {
+  const round = race?.round;
+  const name = race?.raceName;
+  const country = race?.Circuit?.Location?.country;
+  const date = race?.date;
+  const isSelected = !!active;
+
   return (
-    <div style={{ 
+    <div onClick={onClick} style={{ 
       borderLeft: isSelected ? '8px solid #ff1801' : '8px solid #333',
       padding: '15px', 
       margin: '10px 0', 
