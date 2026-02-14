@@ -1,53 +1,39 @@
-function Leaderboard({ standings = [], raceResults = [] }) {
-  const getDriverInfo = (driverId) => {
-    const result = (raceResults || []).find(r => r.Driver.driverId === driverId);
-    if (result) {
-      return {
-        name: `${result.Driver.givenName} ${result.Driver.familyName}`,
-        code: result.Driver.code || result.Driver.driverId.slice(0, 3).toUpperCase(),
-        team: result.Constructor?.name || 'Unknown',
-        number: result.number || '?'
-      };
-    }
-    return { name: driverId, code: driverId.slice(0, 3).toUpperCase(), team: 'Unknown', number: '?' };
-  };
+import React from 'react';
 
-  if (!standings || standings.length === 0) {
-    return (
-      <div style={{ textAlign: 'center', padding: '40px 0', color: '#666' }}>
-        <p>No data available</p>
-      </div>
-    );
-  }
+const TEAM_COLORS = {
+  ferrari: '#EF1A2D', mclaren: '#FF8000', red_bull: '#3671C6', 
+  mercedes: '#27F4D2', aston_martin: '#229971', williams: '#64C4FF',
+  alpine: '#0093CC', haas: '#B6BABD', rb: '#6692FF', sauber: '#52E252'
+};
 
+export default function Leaderboard({ standings }) {
   return (
-    <div style={{ marginTop: '10px' }}>
+    <div className="leaderboard">
+      <h3>LIVE TIMING</h3>
+      {standings.length === 0 && <p className="empty">Waiting for data...</p>}
       {standings.map((driver) => {
-        const info = getDriverInfo(driver.driverId);
-        const position = parseInt(driver.position, 10) || 0;
-        let positionColor = '#888';
-        if (position === 1) positionColor = '#ffd700';
-        else if (position === 2) positionColor = '#c0c0c0';
-        else if (position === 3) positionColor = '#cd7f32';
-        else if (position <= 10 && position > 3) positionColor = '#4ade80';
+        const color = TEAM_COLORS[driver.constructorId] || '#444';
+        const imgUrl = `https://media.formula1.com/content/fom-website/en/drivers/${driver.driverId}/_jcr_content/image.img.jpg`;
 
         return (
-          <div
-            key={driver.driverId}
-            style={{ display: 'flex', alignItems: 'center', padding: '12px', margin: '8px 0', backgroundColor: '#0f0f0f', borderLeft: `4px solid ${positionColor}`, borderRadius: '4px', transition: 'all 0.3s', border: '1px solid #222' }}
-          >
-            <div style={{ minWidth: '40px', fontSize: '1.3rem', fontWeight: 'bold', color: positionColor }}>{position}</div>
-            <div style={{ minWidth: '35px', fontSize: '0.85rem', fontWeight: 'bold', color: '#666', marginRight: '10px' }}>#{info.number}</div>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: '0.95rem', fontWeight: 'bold', color: 'white' }}>{info.code}</div>
-              <div style={{ fontSize: '0.75rem', color: '#666', marginTop: '2px' }}>{(info.team || '').length > 20 ? (info.team || '').slice(0, 20) + '...' : info.team}</div>
+          <div key={driver.driverId} className="leaderboard-row" style={{ borderLeft: `4px solid ${color}` }}>
+            <span className="position">{driver.position}</span>
+            <img 
+              src={imgUrl} 
+              alt={driver.driverId} 
+              className="driver-img" 
+              onError={(e) => e.target.src = 'https://via.placeholder.com/50?text=F1'}
+            />
+            <div className="driver-info">
+              <div className="name-row">
+                <strong>{driver.driverName}</strong>
+              </div>
+              <small>{driver.constructorName}</small>
             </div>
-            <div style={{ fontSize: '0.85rem', color: '#ff1801', fontFamily: 'monospace', textAlign: 'right' }}>{driver.time}</div>
+            <div className="time">{driver.time}</div>
           </div>
         );
       })}
     </div>
   );
 }
-
-export default Leaderboard;

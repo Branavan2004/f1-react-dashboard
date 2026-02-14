@@ -1,8 +1,8 @@
 function TrackSimulation({ circuitName, drivers, totalDrivers }) {
   // Generic track layouts for different circuit types
   const getTrackPath = (name) => {
-    const lowerName = name.toLowerCase();
-    
+    const lowerName = (name || '').toLowerCase();
+
     // Street circuits (Monaco, Singapore, Baku, etc.)
     if (lowerName.includes('monaco') || lowerName.includes('street')) {
       return "M100,50 L300,50 L350,100 L350,250 L300,300 L100,300 L50,250 L50,100 Z";
@@ -28,32 +28,32 @@ function TrackSimulation({ circuitName, drivers, totalDrivers }) {
   const trackPath = getTrackPath(circuitName);
 
   return (
-    <div style={{ 
-      marginTop: '20px', 
-      padding: '20px', 
-      background: '#0f0f0f', 
-      borderRadius: '10px', 
-      border: '1px solid #333' 
+    <div style={{
+      marginTop: '20px',
+      padding: '20px',
+      background: '#0f0f0f',
+      borderRadius: '10px',
+      border: '1px solid #333'
     }}>
-      <h4 style={{ 
-        color: '#888', 
+      <h4 style={{
+        color: '#888',
         textAlign: 'center',
         marginBottom: '15px',
         fontSize: '0.9rem'
       }}>
         {circuitName}
       </h4>
-      
-      <svg 
-        width="100%" 
-        height="360" 
+
+      <svg
+        width="100%"
+        height="360"
         viewBox="0 0 500 360"
         style={{ background: '#1a1a1a', borderRadius: '8px' }}
       >
         {/* Grid pattern */}
         <defs>
           <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#222" strokeWidth="0.5"/>
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#222" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="500" height="360" fill="url(#grid)" />
@@ -82,21 +82,21 @@ function TrackSimulation({ circuitName, drivers, totalDrivers }) {
         {drivers.slice(0, 20).map((driver, index) => {
           const hue = (index * 360) / Math.min(totalDrivers, 20);
           const color = `hsl(${hue}, 70%, 55%)`;
-          
+
           // Stagger the starting position based on grid position
           const offset = (index * 2.5) + '%';
-          
+
           return (
             <g key={driver.driverId}>
               {/* Driver car dot */}
-              <circle 
-                r="5" 
+              <circle
+                r="5"
                 fill={color}
                 stroke="#fff"
                 strokeWidth="1.5"
               >
-                <animateMotion 
-                  dur="8s" 
+                <animateMotion
+                  dur="8s"
                   repeatCount="indefinite"
                   path={trackPath}
                   keyPoints={`0;1`}
@@ -114,8 +114,8 @@ function TrackSimulation({ circuitName, drivers, totalDrivers }) {
                 dy="3"
               >
                 {driver.number}
-                <animateMotion 
-                  dur="8s" 
+                <animateMotion
+                  dur="8s"
                   repeatCount="indefinite"
                   path={trackPath}
                   begin={`-${index * 0.3}s`}
@@ -131,13 +131,13 @@ function TrackSimulation({ circuitName, drivers, totalDrivers }) {
         <text x="240" y="340" fill="#666" fontSize="10" textAnchor="middle">SECTOR 3</text>
       </svg>
 
-      <div style={{ 
-        marginTop: '15px', 
+      <div style={{
+        marginTop: '15px',
         textAlign: 'center',
         color: '#666',
         fontSize: '0.85rem'
       }}>
-        <span style={{ color: '#ff1801' }}>●</span> Live Position • 
+        <span style={{ color: '#ff1801' }}>●</span> Live Position •
         <span style={{ marginLeft: '10px' }}>Animation Speed: 8s/lap</span>
       </div>
     </div>
