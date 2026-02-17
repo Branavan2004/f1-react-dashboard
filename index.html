@@ -1,16 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>F1 2024 Race Replay</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <!-- Debug banner: shows HTML loaded even if JS fails -->
-    <div id="debug-banner" style="position:fixed;left:12px;bottom:12px;background:#111;color:#0f0;border-radius:6px;padding:8px 10px;font-family:monospace;z-index:9999;">INDEX.HTML LOADED</div>
-    <script>/* remove debug banner after 8s if React takes over */setTimeout(()=>{const b=document.getElementById('debug-banner');if(b) b.style.display='none';},8000);</script>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>F1 Standings</title>
+  <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div id="driver-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="Script.js"></script>
+</body>
 </html>
